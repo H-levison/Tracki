@@ -6,10 +6,10 @@ import { getFunctions } from 'firebase/functions';
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBQsRJANwjTHj_Apb91VQeVEJ3xvIPfCIY",
-  authDomain: "tracki-4c91b.firebaseapp.com",
-  projectId: "tracki-4c91b",
-  storageBucket: "tracki-4c91b.firebasestorage.app",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: "858693475602",
   appId: "1:858693475602:web:312db3be487b1e10cca7cb",
   measurementId: "G-VT86PQM3YW"
