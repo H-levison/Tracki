@@ -2,6 +2,7 @@
 
 A comprehensive Sales, Inventory, and Tax Compliance management tool for small businesses in Rwanda.
 
+Public URL -  https://tracki-4c91b.web.app/login
 ## Features
 
 - **Multi-user Support**: Role-based access control (Admin and sales representative)
