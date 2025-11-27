@@ -47,7 +47,14 @@ export const signupWithInvitation = async (email, password, name, invitationToke
     const invitation = await getInvitationByToken(invitationToken);
     
     if (!invitation) {
-      throw new Error('Invalid or expired invitation');
+      throw new Error('Invalid or expired invitation link');
+    }
+
+    if (invitation.status && invitation.status !== 'pending') {
+      if (invitation.status === 'accepted') {
+        throw new Error('This invitation link has already been used.');
+      }
+      throw new Error('This invitation is no longer active.');
     }
 
     if (invitation.email.toLowerCase() !== email.toLowerCase()) {

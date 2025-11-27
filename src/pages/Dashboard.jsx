@@ -111,7 +111,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
       <div className="mb-10">
         <div className="flex justify-between items-start mb-4">
           <div>

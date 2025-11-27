@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { ThemeProvider } from './contexts/ThemeContext';
@@ -16,6 +17,7 @@ import OfflineIndicator from './components/common/OfflineIndicator';
 
 const AppLayout = ({ children }) => {
   const { user } = useAuth();
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
   
   // Enable inactivity tracking for logged-in users
   useInactivity();
@@ -29,10 +31,12 @@ const AppLayout = ({ children }) => {
 
   return (
     <div className="flex h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
-      <Sidebar />
+      <Sidebar isMobileOpen={isSidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Navbar />
-        <main className="flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-900 transition-colors duration-200">{children}</main>
+        <Navbar onToggleSidebar={() => setSidebarOpen(true)} />
+        <main className="flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+          {children}
+        </main>
       </div>
       <OfflineIndicator businessId={businessId} />
     </div>

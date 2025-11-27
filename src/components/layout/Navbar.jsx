@@ -5,7 +5,7 @@ import { logout } from '../../services/authService';
 import toast from 'react-hot-toast';
 import Button from '../common/Button';
 
-const Navbar = () => {
+const Navbar = ({ onToggleSidebar = () => {} }) => {
   const { user, setUser } = useAuth();
   const { theme, toggleTheme, isDark } = useTheme();
   const navigate = useNavigate();
@@ -28,16 +28,26 @@ const Navbar = () => {
           {user && (
             <>
               <div className="flex items-center gap-4">
+                <button
+                  type="button"
+                  className="md:hidden p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
+                  onClick={onToggleSidebar}
+                  aria-label="Open sidebar"
+                >
+                  <svg className="w-5 h-5 text-gray-700 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </button>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-400 dark:to-blue-500 flex items-center justify-center text-white font-semibold text-sm">
-                    {user.name.charAt(0).toUpperCase()}
+                  {(user?.displayName || user?.email || "Unknown").charAt(0).toUpperCase()}
                   </div>
                   <div>
                     <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
-                      {user.name}
+                      {user?.displayName || user?.email || "Unknown"}
                     </p>
                     <p className="text-xs text-gray-500 dark:text-gray-400 capitalize">
-                      {user.role}
+                      {user?.role}
                     </p>
                   </div>
                 </div>

@@ -265,8 +265,7 @@ export const getInvitationByToken = async (token) => {
   try {
     const q = query(
       collection(db, 'invitations'),
-      where('token', '==', token),
-      where('status', '==', 'pending')
+      where('token', '==', token)
     );
     const querySnapshot = await getDocs(q);
     
@@ -338,12 +337,16 @@ export const acceptInvitation = async (invitationId, userId) => {
         acceptedBy: userId,
       });
       
-      // Update user document to link to business
+      // Update user document to link to business (create if missing)
       const userRef = doc(db, 'users', userId);
-      transaction.update(userRef, {
-        businessId: invitation.businessId,
-        role: 'representative',
-      });
+      transaction.set(
+        userRef,
+        {
+          businessId: invitation.businessId,
+          role: 'representative',
+        },
+        { merge: true }
+      );
       
       // Add user to business salesRepIds array
       const businessRef = doc(db, 'businesses', invitation.businessId);

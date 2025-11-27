@@ -1,6 +1,7 @@
 {
   "projects": {
-    "tracki": "tracki-4c91b"
+    "tracki": "tracki-4c91b",
+    "default": "tracki-4c91b"
   },
   "targets": {},
   "etags": {}
