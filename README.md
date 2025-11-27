@@ -1,12 +1,11 @@
 # Tracki
 
-A comprehensive Sales, Inventory, and Tax Compliance management tool for small businesses, specifically designed for Rwandan RRA tax regulations.
+A comprehensive Sales, Inventory, and Tax Compliance management tool for small businesses in Rwanda.
 
 ## Features
 
-- **Multi-user Support**: Role-based access control (Admin and Standard users)
+- **Multi-user Support**: Role-based access control (Admin and sales representative)
 - **Sales Management**: Record sales with automatic VAT calculations
-- **Inventory Tracking**: Manage products and track stock levels
 - **Tax Compliance**: RRA VAT calculations and tax reports
 - **Data Export**: Export reports to PDF and Excel formats
 - **Offline Support**: Basic offline persistence for viewing data
@@ -89,17 +88,16 @@ npm install
    - Scroll down to "Your apps" and add a web app
    - Copy the Firebase configuration object
 
-4. Update `src/services/firebase.js` with your Firebase configuration:
+4. Environment Configuration:
+Create a .env file in the root directory (do not commit this file). Add your Firebase config keys:
 
-```javascript
-const firebaseConfig = {
-  apiKey: "your-api-key",
-  authDomain: "your-project.firebaseapp.com",
-  projectId: "your-project-id",
-  storageBucket: "your-project.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "your-app-id"
-};
+```
+VITE_FIREBASE_API_KEY=your_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_project.firebasestorage.app
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_id
+VITE_FIREBASE_APP_ID=your_app_id
 ```
 
 ### 3. Initialize Firestore
@@ -157,7 +155,7 @@ You'll need to manually create the initial business and user data in Firestore:
 npm run dev
 ```
 
-The application will be available at `http://localhost:5173`
+The application will be available at `http://localhost:yourport`
 
 ## Database Schema
 
@@ -193,7 +191,7 @@ The application will be available at `http://localhost:5173`
 - Can manage inventory
 - Can record sales
 
-### Standard User
+### Sales Representative
 - Can view Dashboard
 - Can record sales
 - Can view inventory (read-only)
@@ -256,6 +254,13 @@ npm run build
 ```bash
 npm run preview
 ```
+
+## Screenshots
+##Login Screen
+screenshots\Screenshot 2025-11-28 004950.png
+
+##User Dashboard
+screenshots\Screenshot 2025-11-28 005027.png
 
 ## Troubleshooting
 
